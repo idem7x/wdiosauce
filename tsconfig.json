@@ -1,0 +1,15 @@
+{
+    "compilerOptions": {
+        "moduleResolution": "node",
+        "module": "commonjs",
+        "types": [
+            "node",
+            "@wdio/globals/types",
+            "expect-webdriverio",
+            "@wdio/jasmine-framework",
+            "@wdio/sauce-service",
+            "wdio-image-comparison-service"
+        ],
+        "target": "es2022"
+    }
+}
