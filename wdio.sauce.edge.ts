@@ -8,7 +8,7 @@ export const config: WebdriverIO.Config = {
         hostname: 'ondemand.eu-central-1.saucelabs.com',
         services: ["sauce"],
         capabilities: [{
-            browserName: "chrome",
+            browserName: "MicrosoftEdge",
             browserVersion: "latest",
             platformName: "Windows 10"
         }]

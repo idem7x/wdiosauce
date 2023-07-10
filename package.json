@@ -6,8 +6,9 @@
     "node": "18.16.0"
   },
   "scripts": {
-    "test:local": "npx wdio run ./wdio.local.ts",
-    "test:sauce": "npx wdio run ./wdio.sauce.ts"
+    "test:local": "npx wdio run ./wdio.local.ts --suite login",
+    "test:sauce": "npx wdio run ./wdio.sauce.ts --suite login",
+    "test:sauceedge": "npx wdio run ./wdio.sauce.edge.ts --suite key"
   },
   "keywords": [],
   "author": "",

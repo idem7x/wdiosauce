@@ -6,3 +6,10 @@ To reproduce an issue:
 - run `npm run test:sauce` - it fails with `TypeError: browser.saveScreen is not a function`
 - run `npm run test:local` - it passes
 
+# Press key does not work for Edge on Saucelabs
+To reproduce an issue:
+- install node 18.16.0
+- npm install
+- setup user, key and region for Saucelabs in [wdio.sauce.edge.ts](wdio.sauce.edge.ts)
+- run `npm run test:sauceedge` - it fails with `Request timed out! Consider increasing the "connectionRetryTimeout" option.`
+

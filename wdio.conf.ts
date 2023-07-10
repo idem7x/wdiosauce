@@ -16,8 +16,14 @@ export const config: Options.Testrunner = {
             transpileOnly: true
         }
     },
-
-
+    suites: {
+        login: [
+            './test/specs/example.e2e.ts'
+        ],
+        key: [
+            './test/specs/scroll.e2e.ts'
+        ]
+    },
     //
     // ==================
     // Specify Test Files
@@ -105,7 +111,7 @@ export const config: Options.Testrunner = {
     //
     // Default timeout in milliseconds for request
     // if browser driver or grid doesn't send response
-    connectionRetryTimeout: 120000,
+    connectionRetryTimeout: 10000,
     //
     // Default request retries count
     connectionRetryCount: 3,
@@ -159,7 +165,7 @@ export const config: Options.Testrunner = {
     // Options to be passed to Jasmine.
     jasmineOpts: {
         // Jasmine default timeout
-        defaultTimeoutInterval: 60000,
+        defaultTimeoutInterval: 600000,
         //
         // The Jasmine framework allows interception of each assertion in order to log the state of the application
         // or website depending on the result. For example, it is pretty handy to take a screenshot every time
