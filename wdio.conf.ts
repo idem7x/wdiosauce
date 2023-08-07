@@ -20,6 +20,9 @@ export const config: Options.Testrunner = {
         login: [
             './test/specs/example.e2e.ts'
         ],
+        download: [
+            './test/specs/download.ts'
+        ],
         key: [
             './test/specs/scroll.e2e.ts'
         ]
@@ -71,7 +74,7 @@ export const config: Options.Testrunner = {
     //
     capabilities: [{
         // capabilities for local browser web tests
-        browserName: 'chrome' // or "firefox", "microsoftedge", "safari"
+        browserName: 'chrome', // or "firefox", "microsoftedge", "safari"
     }],
     //
     // ===================
@@ -111,7 +114,7 @@ export const config: Options.Testrunner = {
     //
     // Default timeout in milliseconds for request
     // if browser driver or grid doesn't send response
-    connectionRetryTimeout: 10000,
+    connectionRetryTimeout: 30000,
     //
     // Default request retries count
     connectionRetryCount: 3,
@@ -120,23 +123,24 @@ export const config: Options.Testrunner = {
     // Services take over a specific job you don't want to take care of. They enhance
     // your test setup with almost no effort. Unlike plugins, they don't add new
     // commands. Instead, they hook themselves up into the test process.
-    services: ['chromedriver', [
-        'image-comparison',
-        // The options
-        {
-            // Some options, see the docs for more
-            baselineFolder: join(
-                process.cwd(),
-                './tests/sauceLabsBaseline/'
-            ),
-            formatImageName: '{tag}-{logName}-{width}x{height}',
-            screenshotPath: join(process.cwd(), '.tmp/'),
-            savePerInstance: true,
-            autoSaveBaseline: true,
-            blockOutStatusBar: true,
-            blockOutToolBar: true
-        },
-    ],],
+    services: [
+        [
+            'image-comparison',
+            // The options
+            {
+                // Some options, see the docs for more
+                baselineFolder: join(
+                    process.cwd(),
+                    './tests/sauceLabsBaseline/'
+                ),
+                formatImageName: '{tag}-{logName}-{width}x{height}',
+                screenshotPath: join(process.cwd(), '.tmp/'),
+                savePerInstance: true,
+                autoSaveBaseline: true,
+                blockOutStatusBar: true,
+                blockOutToolBar: true
+            },
+        ],],
 
     // Framework you want to run your specs with.
     // The following are supported: Mocha, Jasmine, and Cucumber
@@ -173,23 +177,24 @@ export const config: Options.Testrunner = {
         expectationResultHandler: function (passed, assertion) {
             // do something
         }
-    },
+    }
+    ,
 
-    //
-    // =====
-    // Hooks
-    // =====
-    // WebdriverIO provides several hooks you can use to interfere with the test process in order to enhance
-    // it and to build services around it. You can either apply a single function or an array of
-    // methods to it. If one of them returns with a promise, WebdriverIO will wait until that promise got
-    // resolved to continue.
+//
+// =====
+// Hooks
+// =====
+// WebdriverIO provides several hooks you can use to interfere with the test process in order to enhance
+// it and to build services around it. You can either apply a single function or an array of
+// methods to it. If one of them returns with a promise, WebdriverIO will wait until that promise got
+// resolved to continue.
     /**
      * Gets executed once before all workers get launched.
      * @param {object} config wdio configuration object
      * @param {Array.<Object>} capabilities list of capabilities details
      */
-    // onPrepare: function (config, capabilities) {
-    // },
+// onPrepare: function (config, capabilities) {
+// },
     /**
      * Gets executed before a worker process is spawned and can be used to initialise specific service
      * for that worker as well as modify runtime environments in an async fashion.
@@ -199,8 +204,8 @@ export const config: Options.Testrunner = {
      * @param  {object} args     object that will be merged with the main configuration once worker is initialized
      * @param  {object} execArgv list of string arguments passed to the worker process
      */
-    // onWorkerStart: function (cid, caps, specs, args, execArgv) {
-    // },
+// onWorkerStart: function (cid, caps, specs, args, execArgv) {
+// },
     /**
      * Gets executed just after a worker process has exited.
      * @param  {string} cid      capability id (e.g 0-0)
@@ -208,8 +213,8 @@ export const config: Options.Testrunner = {
      * @param  {object} specs    specs to be run in the worker process
      * @param  {number} retries  number of retries used
      */
-    // onWorkerEnd: function (cid, exitCode, specs, retries) {
-    // },
+// onWorkerEnd: function (cid, exitCode, specs, retries) {
+// },
     /**
      * Gets executed just before initialising the webdriver session and test framework. It allows you
      * to manipulate configurations depending on the capability or spec.
@@ -218,8 +223,8 @@ export const config: Options.Testrunner = {
      * @param {Array.<String>} specs List of spec file paths that are to be run
      * @param {string} cid worker id (e.g. 0-0)
      */
-    // beforeSession: function (config, capabilities, specs, cid) {
-    // },
+// beforeSession: function (config, capabilities, specs, cid) {
+// },
     /**
      * Gets executed before test execution begins. At this point you can access to all global
      * variables like `browser`. It is the perfect place to define custom commands.
@@ -227,38 +232,38 @@ export const config: Options.Testrunner = {
      * @param {Array.<String>} specs        List of spec file paths that are to be run
      * @param {object}         browser      instance of created browser/device session
      */
-    // before: function (capabilities, specs) {
-    // },
+// before: function (capabilities, specs) {
+// },
     /**
      * Runs before a WebdriverIO command gets executed.
      * @param {string} commandName hook command name
      * @param {Array} args arguments that command would receive
      */
-    // beforeCommand: function (commandName, args) {
-    // },
+// beforeCommand: function (commandName, args) {
+// },
     /**
      * Hook that gets executed before the suite starts
      * @param {object} suite suite details
      */
-    // beforeSuite: function (suite) {
-    // },
+// beforeSuite: function (suite) {
+// },
     /**
      * Function to be executed before a test (in Mocha/Jasmine) starts.
      */
-    // beforeTest: function (test, context) {
-    // },
+// beforeTest: function (test, context) {
+// },
     /**
      * Hook that gets executed _before_ a hook within the suite starts (e.g. runs before calling
      * beforeEach in Mocha)
      */
-    // beforeHook: function (test, context) {
-    // },
+// beforeHook: function (test, context) {
+// },
     /**
      * Hook that gets executed _after_ a hook within the suite starts (e.g. runs after calling
      * afterEach in Mocha)
      */
-    // afterHook: function (test, context, { error, result, duration, passed, retries }) {
-    // },
+// afterHook: function (test, context, { error, result, duration, passed, retries }) {
+// },
     /**
      * Function to be executed after a test (in Mocha/Jasmine only)
      * @param {object}  test             test object
@@ -269,16 +274,16 @@ export const config: Options.Testrunner = {
      * @param {boolean} result.passed    true if test has passed, otherwise false
      * @param {object}  result.retries   informations to spec related retries, e.g. `{ attempts: 0, limit: 0 }`
      */
-    // afterTest: function(test, context, { error, result, duration, passed, retries }) {
-    // },
+// afterTest: function(test, context, { error, result, duration, passed, retries }) {
+// },
 
 
     /**
      * Hook that gets executed after the suite has ended
      * @param {object} suite suite details
      */
-    // afterSuite: function (suite) {
-    // },
+// afterSuite: function (suite) {
+// },
     /**
      * Runs after a WebdriverIO command gets executed
      * @param {string} commandName hook command name
@@ -286,8 +291,8 @@ export const config: Options.Testrunner = {
      * @param {number} result 0 - command success, 1 - command error
      * @param {object} error error object if any
      */
-    // afterCommand: function (commandName, args, result, error) {
-    // },
+// afterCommand: function (commandName, args, result, error) {
+// },
     /**
      * Gets executed after all tests are done. You still have access to all global variables from
      * the test.
@@ -295,16 +300,16 @@ export const config: Options.Testrunner = {
      * @param {Array.<Object>} capabilities list of capabilities details
      * @param {Array.<String>} specs List of spec file paths that ran
      */
-    // after: function (result, capabilities, specs) {
-    // },
+// after: function (result, capabilities, specs) {
+// },
     /**
      * Gets executed right after terminating the webdriver session.
      * @param {object} config wdio configuration object
      * @param {Array.<Object>} capabilities list of capabilities details
      * @param {Array.<String>} specs List of spec file paths that ran
      */
-    // afterSession: function (config, capabilities, specs) {
-    // },
+// afterSession: function (config, capabilities, specs) {
+// },
     /**
      * Gets executed after all workers got shut down and the process is about to exit. An error
      * thrown in the onComplete hook will result in the test run failing.
@@ -313,13 +318,13 @@ export const config: Options.Testrunner = {
      * @param {Array.<Object>} capabilities list of capabilities details
      * @param {<Object>} results object containing test results
      */
-    // onComplete: function(exitCode, config, capabilities, results) {
-    // },
+// onComplete: function(exitCode, config, capabilities, results) {
+// },
     /**
      * Gets executed when a refresh happens.
      * @param {string} oldSessionId session ID of the old session
      * @param {string} newSessionId session ID of the new session
      */
-    // onReload: function(oldSessionId, newSessionId) {
-    // }
+// onReload: function(oldSessionId, newSessionId) {
+// }
 }
